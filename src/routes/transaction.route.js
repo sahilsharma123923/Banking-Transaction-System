@@ -1,8 +1,14 @@
 const {Router}=require('express')
+const authMiddleware=require('../middleware/auth.middleware')
+const transactionController=require('../controllers/transaction.controller')
+
 
 
 const transactionRoute=Router();
 
-transactionRoute.post("/");
+transactionRoute.post("/",authMiddleware.authMiddleware,transactionController.createTransaction);
+
+transactionRoutes.post("/system/initial-funds", authMiddleware.authSystemUserMiddleware, transactionController.createInitialFundsTransaction)
+
 
 module.exports=transactionRoute
